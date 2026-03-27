@@ -234,28 +234,43 @@
   color: #f0f6fc;
 }
 
-.code-input {
+.code-editor-container {
   flex: 1;
   min-height: 200px;
-  padding: 1rem 1.1rem;
   margin: 0;
-  border: none;
-  resize: vertical;
-  font-family: 'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  overflow: hidden;
   background: #0d1117;
-  color: #e6edf3;
-  tab-size: 2;
 }
 
-.code-input:focus {
+.code-editor-container :focus {
   outline: none;
-  box-shadow: inset 0 0 0 2px #388bfd;
 }
 
-.code-input::placeholder {
-  color: #6e7681;
+.code-editor-container .monaco-editor {
+  font-family: 'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+}
+
+.code-editor-container .monaco-editor,
+.code-editor-container .monaco-editor-background,
+.code-editor-container .margin {
+  background-color: #0d1117 !important;
+}
+
+.code-editor-container .monaco-editor .view-overlays .current-line {
+  border: 1px solid #30363d !important;
+}
+
+.code-editor-container .monaco-editor .focused .selected-text {
+  background-color: #1f6feb55 !important;
+}
+
+.code-editor-container .monaco-editor .inputarea.ime-input {
+  border: none;
+  color: #e6edf3;
+}
+
+.code-editor-container .monaco-editor .lines-content {
+  cursor: text;
 }
 
 .output-panel {

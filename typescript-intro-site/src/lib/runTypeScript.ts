@@ -117,7 +117,7 @@ async function ensureSandboxFrame(): Promise<HTMLIFrameElement> {
 
   installMessageListener();
 
-  sandboxReadyPromise = new Promise((resolve, reject) => {
+  sandboxReadyPromise = new Promise<HTMLIFrameElement>((resolve, reject) => {
     const iframe = document.createElement('iframe');
     iframe.setAttribute('sandbox', 'allow-scripts');
     iframe.style.display = 'none';
@@ -146,7 +146,7 @@ async function ensureSandboxFrame(): Promise<HTMLIFrameElement> {
     sandboxReadyPromise = null;
   });
 
-  return sandboxReadyPromise;
+  return sandboxReadyPromise ?? Promise.reject(new Error('サンドボックスの初期化に失敗しました。'));
 }
 
 async function executeInSandbox(code: string): Promise<RunResult> {
