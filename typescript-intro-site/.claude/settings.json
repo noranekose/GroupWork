@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "_comment_permissions": "読み込み：許可、書き込み：確認、削除：拒否", 
+    "allow": ["Read(**)"],
+    "confirmationRequired": [
+      "Write(**)",
+      "Edit(**)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Read(*.env)", 
+      "Write(*.env)"
+    ]
+  }
+}
