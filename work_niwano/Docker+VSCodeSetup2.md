@@ -21,7 +21,7 @@ typescript-intro-site/
 
 ## 使い方
 1. VSCode でコンテナを起動する手順
-- VSCode でプロジェクトを開く
+- VSCode でプロジェクト`typescript-intro-site`を開く
 - コマンドパレット（Ctrl+Shift+P）を開く
 - `Dev Containers: Reopen in Container` を実行
 - docker-compose.yaml に基づいてコンテナがビルドされ、開発環境が起動する
