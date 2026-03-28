@@ -1,6 +1,8 @@
 {
   "name": "typescript-intro-site",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/app",
   "forwardPorts": [5173],
   "portsAttributes": {
     "5173": {
@@ -8,7 +10,6 @@
       "onAutoForward": "openBrowser"
     }
   },
-  "postCreateCommand": "npm install",
   "customizations": {
     "vscode": {
       "extensions": [

@@ -8,6 +8,7 @@
     ],
     "deny": [
       "Bash(rm -rf *)",
+      "Read(*.env)", 
       "Write(*.env)"
     ]
   }
