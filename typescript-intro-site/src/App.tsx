@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useState } from 'react';
+import Editor from '@monaco-editor/react';
 import { lessons } from './data/lessons';
 import { normalizeOutputForJudge } from './lib/normalizeOutput';
+import { NO_LOG_PLACEHOLDER } from './lib/runTypeScript';
 import './App.css';
-
-const NO_LOG_PLACEHOLDER = '（console.log の出力はありません）';
 
 function App() {
   const [activeId, setActiveId] = useState(lessons[0].id);
@@ -29,9 +29,9 @@ function App() {
     setError('');
     try {
       const { runTypeScript } = await import('./lib/runTypeScript');
-      const result = runTypeScript(code);
+      const result = await runTypeScript(code);
       setError(result.errorMessage);
-      setOutput(result.success ? result.output : result.output || '');
+      setOutput(result.output);
     } catch {
       setError('実行エンジンの読み込みに失敗しました。ページを再読み込みしてください。');
       setOutput('');
@@ -44,12 +44,6 @@ function App() {
     setCodes((prev) => ({ ...prev, [lesson.id]: value }));
   };
 
-  const handleReset = () => {
-    setCodes((prev) => ({ ...prev, [lesson.id]: lesson.initialCode }));
-    setOutput('');
-    setError('');
-  };
-
   const resetLessonToInitial = useCallback(() => {
     setCodes((prev) => ({ ...prev, [lesson.id]: lesson.initialCode }));
     setOutput('');
@@ -60,7 +54,7 @@ function App() {
     setJudging(true);
     try {
       const { runTypeScript } = await import('./lib/runTypeScript');
-      const result = runTypeScript(code);
+      const result = await runTypeScript(code);
       const expected = lesson.expectedOutput;
 
       if (!result.success) {
@@ -138,7 +132,7 @@ function App() {
             <div className="toolbar">
               <span className="toolbar-label">エディタ</span>
               <div className="toolbar-actions">
-                <button type="button" className="btn secondary" onClick={handleReset}>
+                <button type="button" className="btn secondary" onClick={resetLessonToInitial}>
                   初期コードに戻す
                 </button>
                 <button
@@ -151,14 +145,28 @@ function App() {
                 </button>
               </div>
             </div>
-            <textarea
-              className="code-input"
-              spellCheck={false}
-              value={code}
-              onChange={(e) => handleCodeChange(e.target.value)}
-              aria-label="TypeScript コード"
-              placeholder="ここに TypeScript を書いてみよう（ヒントも参考にしてOK）"
-            />
+            <div className="code-editor-container" aria-label="TypeScript コードエディタ">
+              <Editor
+                height="100%"
+                defaultLanguage="typescript"
+                language="typescript"
+                theme="vs-dark"
+                value={code}
+                onChange={(value) => handleCodeChange(value ?? '')}
+                options={{
+                  minimap: { enabled: false },
+                  fontFamily: '"Consolas", "Monaco", "Menlo", "Ubuntu Mono", monospace',
+                  fontSize: 14,
+                  tabSize: 2,
+                  wordWrap: 'on',
+                  automaticLayout: true,
+                  scrollBeyondLastLine: false,
+                  padding: { top: 14, bottom: 14 },
+                  suggestOnTriggerCharacters: true,
+                  quickSuggestions: true,
+                }}
+              />
+            </div>
           </section>
 
           <section className="panel output-panel" aria-live="polite">
