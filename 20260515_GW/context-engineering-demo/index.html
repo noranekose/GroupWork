@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>◎×ゲーム（コンテキストエンジニアリング デモ）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app" aria-labelledby="title">
+    <header class="app__header">
+      <h1 id="title" class="app__title">◎×ゲーム</h1>
+      <p class="app__subtitle">デモ：文脈を整えた依頼 → 保守しやすい構成</p>
+    </header>
+
+    <p id="status" class="status" role="status" aria-live="polite">
+      現在の手番：◎
+    </p>
+
+    <div
+      id="board"
+      class="board"
+      role="grid"
+      aria-label="3行3列の盤面"
+    ></div>
+
+    <div class="actions">
+      <button type="button" id="resetButton" class="btn btn--primary">
+        リセット
+      </button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

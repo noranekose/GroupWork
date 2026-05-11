@@ -115,7 +115,7 @@ git push                    # GitHub に送る
 
 
 # 1) リポジトリへ移動
-cd "C:\Users\Yu\OneDrive\Desktop\Cursor\GroupWork"
+cd "C:\Users\kyuu0\OneDrive\Desktop\Cursor\EFU_GW\GroupWork"
 
 # 2) 変更確認
 git status
@@ -124,7 +124,7 @@ git status
 git add .
 
 # 4) コミット
-git commit -m "TypeScript実行処理の安全性改善とリセット処理の整理"
+git commit -m "報告レポート_260423_01.md"
 
 # 5) いまのブランチ名を確認
 git branch --show-current
