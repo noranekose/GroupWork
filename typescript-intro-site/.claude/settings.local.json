@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "WebFetch(domain:www.learn-ts.org)",
+      "WebFetch(domain:www.typescriptgamified.com)",
+      "WebFetch(domain:learntypescript.online)",
+      "WebFetch(domain:www.codecademy.com)",
+      "WebSearch",
+      "WebFetch(domain:learningtypescript.org)",
+      "WebFetch(domain:www.totaltypescript.com)"
     ]
   }
 }
